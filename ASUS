@@ -1,0 +1,73 @@
+3 coding questions:
+
+1. Write a function solution that, given an integer N, returns a string of length N containing as many different lower-case letters ('a'-'z') as possible, in which each letter occurs an equal number of times.
+
+Examples:
+
+1. Given N = 3, the function may return "fig", "pea", "nut", etc. Each of these
+
+strings contains three different letters with the same number of occurrences
+
+2 Given N = 5, the function may return "mango", "grape", "melon", etc. 3. Given N = 30, the function may return "aabbcc. oo" (each letter from 'a' to 'o' occurs twice). The string contains 15 different letters
+
+Write an efficient algorithm for the following assumptions:
+
+⚫N is an integer within the range [1. 200,000]
+
+
+solution: 
+   public static String generateString(int N) {
+     String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+	   StringBuilder result = new StringBuilder();
+	   int frequency = (int) Math.ceil((double) N / 26);   
+
+	   for (int i = 0; i < 26; i++) {
+		   for(int j = 1; j <= frequency; j++) {
+			   result.append(ALPHABET.charAt(i));   
+		   }
+		   if(result.length() == N) {
+			   break;
+		   }
+	   }
+	   return result.toString();
+   }
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+2. bug fix for reversing integer
+
+answer:
+  
+  public static void solution(int N) {
+	   int reverse = 0;  
+	   while(N != 0) {  
+		   int remainder = N % 10;  
+		   reverse = reverse * 10 + remainder;  
+		   N = N/ 10;  
+	   }  
+	   System.out.println(reverse); 
+   }
+
+// ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+3. roll dice, question too long, ignore
+
+answer:
+
+   public static int[] solution(int[] rolls, int n, int mean) {
+       int m = rolls.length;
+       int s = (n + m) * mean;
+       for (int v: rolls) {
+           s -= v;
+       }
+       if (s > n * 6 || s < n) {
+           return new int[] {0};
+       }
+       int[] ans = new int[n];
+       Arrays.fill(ans, s / n);
+       for (int i = 0; i < s % n; ++i) {
+           ++ans[i];
+       }
+       return ans;
+   }
+
